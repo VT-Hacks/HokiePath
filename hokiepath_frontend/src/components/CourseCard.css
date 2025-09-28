@@ -1,0 +1,187 @@
+.course-card {
+  background: var(--vt-white);
+  border-radius: 6px;
+  padding: 1rem 0.8rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(117, 120, 123, 0.15);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'DM Serif Text', serif;
+  min-height: 55px;
+  max-height: 65px;
+  width: calc(100% - 2px);
+  position: relative;
+}
+
+.course-card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0; /* Allow content to shrink */
+}
+
+.course-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(229, 117, 31, 0.25);
+  border-color: var(--vt-burntOrange);
+  background: rgba(229, 117, 31, 0.02);
+}
+
+
+.course-code {
+  font-size: 13px;
+  color: var(--vt-burntOrange);
+  font-weight: 500;
+  font-family: 'DM Serif Text', serif;
+  background: rgba(229, 117, 31, 0.1);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.course-subject {
+  font-size: 8px;
+  color: var(--vt-hokieStone);
+  font-weight: 400;
+  font-family: 'DM Serif Text', serif;
+}
+
+.course-title {
+  font-size: 12px;
+  font-weight: 300;
+  font-family: 'DM Serif Text', serif;
+  color: var(--vt-hokieStone-dark);
+  line-height: 1.4;
+  margin-bottom: 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.course-description {
+  font-size: 0.9rem;
+  color: var(--vt-hokieStone);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.course-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.course-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--vt-hokieStone);
+}
+
+.course-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.course-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.course-tag {
+  background: var(--vt-gradient-subtle);
+  color: var(--vt-maroon);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.course-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.add-to-catalog-btn {
+  background: var(--vt-burntOrange);
+  color: var(--vt-white);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: auto;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.course-card:hover .add-to-catalog-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.add-to-catalog-btn:hover {
+  background: var(--vt-maroon);
+  transform: scale(1.05);
+}
+
+.add-to-catalog-btn.added {
+  background: var(--vt-maroon);
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Always show tick mark for selected courses */
+.course-card .add-to-catalog-btn.added {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+.add-to-catalog-btn.added:hover {
+  background: #8b1a3d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .course-card {
+    padding: 1rem;
+  }
+  
+  .course-footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .course-actions {
+    justify-content: center;
+  }
+}

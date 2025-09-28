@@ -1,0 +1,1486 @@
+.ai-chat-page {
+  min-height: 100vh;
+  width: 100vw;
+  background: #f8f9fa;
+  font-family: 'DM Serif Text', serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Two Column Layout */
+.chat-layout {
+  display: flex;
+  height: calc(100vh - 80px);
+  width: 100%;
+  margin: 0;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Left Side - Chat Interface (60%) */
+.chat-left {
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: column;
+  background: var(--vt-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Right Side - Course Info Panel (40%) */
+.chat-right {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Navigation Bar */
+.navbar {
+  background: var(--vt-white);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'DM Serif Text', serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--vt-maroon);
+}
+
+.vt-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--vt-hokieStone-dark);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--vt-gradient);
+  color: var(--vt-white);
+}
+
+.user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.user-info:hover {
+  background-color: rgba(134, 31, 65, 0.1);
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--vt-white);
+  border: 1px solid rgba(134, 31, 65, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  z-index: 1000;
+  margin-top: 0.5rem;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: var(--vt-hokieStone-dark);
+  font-family: 'DM Serif Text', serif;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 6px;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(134, 31, 65, 0.1);
+  color: var(--vt-maroon);
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-weight: 500;
+  color: var(--vt-hokieStone-dark);
+  font-family: 'DM Serif Text', serif;
+  font-size: 1.1rem;
+}
+
+.btn-sm {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Chat Container */
+/* Course Info Panel */
+.course-info-panel {
+  background: var(--vt-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.course-info-panel h3 {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--vt-maroon);
+  margin-bottom: 1.5rem;
+  font-family: 'DM Serif Text', serif;
+}
+
+.info-section {
+  margin-bottom: 2rem;
+}
+
+.info-section h4 {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--vt-hokieStone-dark);
+  margin-bottom: 1rem;
+  font-family: 'DM Serif Text', serif;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--vt-white);
+  border: 1px solid rgba(117, 120, 123, 0.2);
+  border-radius: 6px;
+  color: var(--vt-hokieStone-dark);
+  font-size: 1rem;
+  font-family: 'DM Serif Text', serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: rgba(229, 117, 31, 0.05);
+  border-color: var(--vt-burntOrange);
+  color: var(--vt-burntOrange);
+}
+
+.query-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.query-item {
+  padding: 0.75rem;
+  background: rgba(117, 120, 123, 0.05);
+  border-radius: 6px;
+  font-size: 11px;
+  color: var(--vt-hokieStone);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'DM Serif Text', serif;
+}
+
+.query-item:hover {
+  background: rgba(229, 117, 31, 0.1);
+  color: var(--vt-burntOrange);
+}
+
+/* Reduce font sizes only for chat messages and input */
+.chat-messages,
+.chat-input-container {
+  font-size: 1rem;
+}
+
+.message-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.message-time {
+  display: none;
+}
+
+.chat-input {
+  font-size: 0.8rem;
+}
+
+.suggestion-chip {
+  font-size: 0.8rem;
+}
+
+/* Keep course info panel normal size */
+.course-info-panel h3 {
+  font-size: 18px;
+}
+
+.info-section h4 {
+  font-size: 14px;
+}
+
+.action-btn {
+  font-size: 12px;
+}
+
+.query-item {
+  font-size: 11px;
+}
+
+/* Reduce header height by 40% and font sizes */
+.chat-header {
+  padding: 0.3rem 1.5rem;
+}
+
+.chat-title h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.chat-subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Make input area wider but smaller height */
+.chat-input-wrapper {
+  width: 100%;
+  max-width: none;
+}
+
+/* Remove all message styling - just plain text */
+.message {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0.2rem 0;
+  margin: 0;
+}
+
+.message.user {
+  margin-left: auto;
+  margin-right: 0;
+  max-width: 60%;
+  text-align: right;
+  background: none;
+}
+
+.message.user .message-avatar {
+  display: none;
+}
+
+.message.user .message-content {
+  margin-left: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.message.user .message-text {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+.message.ai {
+  margin-right: auto;
+  margin-left: 0;
+  max-width: 60%;
+  text-align: left;
+  background: none;
+}
+
+.message.ai .message-avatar {
+  display: none;
+}
+
+.message.ai .message-content {
+  margin-right: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.message.ai .message-text {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Change send button to upward arrow */
+.send-button {
+  background: none;
+  border: none;
+  border-radius: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  color: var(--vt-burntOrange);
+  font-weight: bold;
+}
+
+.send-button:hover {
+  transform: scale(1.1);
+}
+
+/* Student Catalog Header with My Courses Button */
+.catalog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  min-height: 2rem;
+  width: 100%;
+}
+
+.catalog-title {
+  color: var(--vt-maroon);
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: 'DM Serif Text', serif;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.my-courses-btn {
+  background: var(--vt-gradient);
+  color: var(--vt-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-family: 'DM Serif Text', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;
+  margin-top: -17px;
+}
+
+.my-courses-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(134, 31, 65, 0.3);
+}
+
+/* Student Catalog Styles - Horizontal course layout */
+.student-courses {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.course-item {
+  padding: 0.8rem;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid rgba(117, 120, 123, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.course-item:hover {
+  background: rgba(229, 117, 31, 0.05);
+  border-color: var(--vt-burntOrange);
+}
+
+.course-item .course-code {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--vt-burntOrange);
+  background: rgba(229, 117, 31, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'DM Serif Text', serif;
+  white-space: nowrap;
+}
+
+.course-item .course-title {
+  font-size: 0.8rem;
+  color: var(--vt-hokieStone-dark);
+  font-family: 'DM Serif Text', serif;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.chat-header {
+  padding: 1rem;
+  background: var(--vt-gradient);
+  color: var(--vt-white);
+  text-align: center;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chat-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.chat-title h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.chat-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.95;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: none;
+}
+
+.message {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.message.user {
+  flex-direction: row-reverse;
+}
+
+.message-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.message.user .message-avatar {
+  background: var(--vt-gradient);
+  color: var(--vt-white);
+}
+
+.message.ai .message-avatar {
+  background: var(--vt-white);
+  color: var(--vt-maroon);
+  /* border: 2px solid var(--vt-maroon); */
+}
+
+.message-content {
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.message.user .message-content {
+  align-items: flex-end;
+}
+
+.message.ai .message-content {
+  align-items: flex-start;
+}
+
+.message-text {
+  padding: 0.6rem 0;
+  line-height: 1.4;
+  display: inline-block;
+  word-wrap: break-word;
+  max-width: fit-content;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #000000;
+}
+
+.message.user .message-text {
+  text-align: right;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #000000;
+}
+
+.message.ai .message-text {
+  text-align: left;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #000000;
+}
+
+.message-text p {
+  margin: 0 0 0.5rem 0;
+}
+
+.message-text p:last-child {
+  margin-bottom: 0;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  color: var(--vt-hokieStone);
+  padding: 0 0.5rem;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vt-maroon);
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+.chat-input-container {
+  padding: 1.5rem 2rem;
+  background: var(--vt-white);
+  border-top: 1px solid #e9ecef;
+}
+
+.chat-input-form {
+  margin-bottom: 0.2rem;
+}
+
+.chat-input-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background: var(--vt-white);
+  border: 2px solid #e9ecef;
+  border-radius: 15px;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+  min-height: 60px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input-wrapper:hover {
+  border-color: var(--vt-maroon);
+  box-shadow: 0 3px 6px rgba(134, 31, 65, 0.15);
+}
+
+.chat-input-wrapper:focus-within {
+  border: 2px solid var(--vt-burntOrange);
+  box-shadow: 0 4px 8px rgba(229, 117, 31, 0.2);
+}
+
+.chat-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  outline: none;
+  color: var(--vt-hokieStone-dark);
+  min-height: 50px;
+  line-height: 1.5;
+  font-weight: 400;
+  font-family: 'DM Serif Text', serif;
+}
+.chat-input::placeholder {
+  color: var(--vt-hokieStone);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+/* Ensure typing text matches AI message style */
+.chat-input:not(:placeholder-shown) {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  color: var(--vt-hokieStone-dark) !important;
+  font-family: 'DM Serif Text', serif !important;
+  line-height: 1.5 !important;
+}
+
+.send-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--vt-gradient);
+  color: var(--vt-white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  font-size: 1.4rem;
+}
+
+.send-button:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(134, 31, 65, 0.3);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.chat-suggestions {
+  text-align: center;
+}
+
+.chat-suggestions p {
+  font-size: 1.1rem;
+  color: var(--vt-hokieStone);
+  margin: 0 0 0.75rem 0;
+  font-weight: 500;
+}
+
+.suggestion-chips {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.suggestion-chip {
+  background: var(--vt-white);
+  color: var(--vt-maroon);
+  border: 1px solid var(--vt-maroon);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.suggestion-chip:hover {
+  background: var(--vt-maroon);
+  color: var(--vt-white);
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .chat-container {
+    margin: 1rem;
+    height: calc(100vh - 80px);
+  }
+  
+  .chat-header,
+  .chat-messages,
+  .chat-input-container {
+    padding: 1rem;
+  }
+  
+  .message-content {
+    max-width: 95%;
+  }
+  
+  .navbar-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .navbar-nav {
+    gap: 1rem;
+  }
+  
+  .user-menu {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .suggestion-chips {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .suggestion-chip {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+/* Recommended Courses Styling - Badge Version */
+.recommended-courses {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid var(--vt-maroon);
+}
+
+.recommended-courses h4 {
+  margin: 0 0 0.75rem 0;
+  color: var(--vt-maroon);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.course-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.course-badge {
+  background: var(--vt-white);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(117, 120, 123, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  min-height: 35px;
+  max-width: 300px;
+}
+
+.course-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(229, 117, 31, 0.25);
+  border-color: var(--vt-burntOrange);
+  background: rgba(229, 117, 31, 0.02);
+}
+
+.course-badge-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.course-badge-code {
+  font-size: 0.8rem;
+  color: var(--vt-burntOrange);
+  font-weight: 600;
+  font-family: 'DM Serif Text', serif;
+  background: rgba(229, 117, 31, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.course-badge-title {
+  color: var(--vt-hokieStone-dark);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  margin-bottom: 0.125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.course-badge-similarity {
+  font-size: 0.7rem;
+  color: var(--vt-burntOrange);
+  font-weight: 500;
+}
+
+.course-badge-add {
+  background: var(--vt-burntOrange);
+  color: var(--vt-white);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.course-badge-add:hover {
+  background: var(--vt-burntOrange-dark);
+  transform: scale(1.1);
+}
+
+.course-badge-add:active {
+  transform: scale(0.95);
+}
+
+.course-badge-add.added {
+  background: var(--vt-maroon);
+  cursor: not-allowed;
+}
+
+.course-badge-add.added:hover {
+  background: var(--vt-maroon);
+  transform: none;
+}
+
+.course-badge-add:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* My Courses Styling */
+.course-added {
+  font-size: 0.7rem;
+  color: var(--vt-hokieStone);
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+.no-courses {
+  text-align: center;
+  padding: 1rem;
+  color: var(--vt-hokieStone);
+}
+
+.no-courses p {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+}
+
+/* Term sections */
+.term-section {
+  margin-bottom: 1.5rem;
+}
+
+.term-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--vt-maroon);
+  margin: 0 0 0.75rem 0;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid var(--vt-maroon);
+  text-align: center;
+}
+
+/* Term Selection Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.term-selection-modal {
+  background: white;
+  border-radius: 12px;
+  padding: 0;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  background: var(--vt-maroon);
+  color: white;
+  position: relative;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-body p {
+  margin: 0 0 1rem 0;
+  color: var(--vt-hokieStone-dark);
+  font-size: 0.95rem;
+}
+
+.term-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.term-option {
+  background: var(--vt-white);
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--vt-hokieStone-dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.term-option:hover {
+  border-color: var(--vt-maroon);
+  background: var(--vt-maroon);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(134, 31, 65, 0.3);
+}
+
+.term-option:active {
+  transform: translateY(0);
+}
+
+/* Career Plan Section */
+.career-plan-section {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.generate-career-plan-btn {
+  background: var(--vt-maroon);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(134, 31, 65, 0.2);
+}
+
+.generate-career-plan-btn:hover:not(:disabled) {
+  background: #8b1a3d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(134, 31, 65, 0.3);
+}
+
+.generate-career-plan-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Career Plan Flowchart */
+.career-plan-flowchart {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--vt-white);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-height: 70vh;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.flowchart-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--vt-maroon);
+  position: sticky;
+  top: 0;
+  background: var(--vt-white);
+  z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.plan-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--vt-maroon);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.plan-description {
+  font-size: 0.85rem;
+  color: var(--vt-hokieStone-dark);
+  margin: 0;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.flowchart-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  position: relative;
+}
+
+.term-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.term-header {
+  background: linear-gradient(135deg, var(--vt-maroon), #8b1a3d);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 8px rgba(134, 31, 65, 0.3);
+  position: relative;
+  z-index: 5;
+}
+
+.term-header::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--vt-maroon);
+}
+
+.term-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.course-card {
+  background: var(--vt-white);
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.course-card:hover {
+  border-color: var(--vt-maroon);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(134, 31, 65, 0.2);
+}
+
+.course-card::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #e9ecef;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.course-card:hover::after {
+  opacity: 1;
+}
+
+.course-code {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--vt-maroon);
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.course-title {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0;
+  line-height: 1.2;
+  text-align: center;
+  font-weight: 600;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin-top: 0.25rem;
+}
+
+
+.flow-arrow {
+  font-size: 2.5rem;
+  color: var(--vt-maroon);
+  margin: 1rem 0;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  z-index: 3;
+}
+
+.flow-arrow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 20px;
+  background: var(--vt-maroon);
+  z-index: -1;
+}
+
+/* Career Plan Selection Modal */
+.career-plan-modal {
+  max-width: 600px;
+  width: 90%;
+}
+
+.career-plan-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.career-plan-option {
+  background: var(--vt-white);
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.career-plan-option:hover {
+  border-color: var(--vt-maroon);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(134, 31, 65, 0.2);
+}
+
+.plan-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--vt-maroon);
+  margin: 0 0 0.5rem 0;
+}
+
+.plan-description {
+  font-size: 0.85rem;
+  color: var(--vt-hokieStone-dark);
+  margin: 0;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Course Description Modal */
+.course-description-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.course-description-modal {
+  background: white;
+  border-radius: 12px;
+  padding: 0;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.course-description-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--vt-hokieStone-dark);
+  margin: 0;
+}
+
+/* My Terms Slide Transition */
+.student-courses {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--vt-white);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 20;
+  overflow-y: auto;
+  padding: 1rem;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.student-courses.slide-in {
+  transform: translateX(0);
+}
+
+.student-courses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--vt-maroon);
+}
+
+.student-courses-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--vt-maroon);
+  margin: 0;
+}
+
+.close-my-terms-btn {
+  background: none;
+  border: none;
+  color: var(--vt-maroon);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-my-terms-btn:hover {
+  background: #f8f9fa;
+  transform: scale(1.1);
+}
+
+/* Course Item Layout */
+.course-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background: var(--vt-white);
+  border-radius: 6px;
+  border: 1px solid rgba(117, 120, 123, 0.15);
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.course-item:hover {
+  border-color: var(--vt-maroon);
+  box-shadow: 0 2px 4px rgba(134, 31, 65, 0.1);
+}
+
+.course-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.course-delete-btn {
+  background: #dc3545;
+  color: var(--vt-white);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.course-delete-btn:hover {
+  background: #c82333;
+  transform: scale(1.1);
+}
+
+.course-delete-btn:active {
+  transform: scale(0.95);
+}
+
